@@ -4,8 +4,10 @@ const Author = require("../authors/model");
 const { param } = require("./routes");
 
 const getSingleBookByTitle = async (req, res) => {
-  const book = awaitBook.findOne({ where: { title: req.params.title } });
-  res.send(books);
+  const book = await Book.findOne({ where: { title: req.params.title } });
+  const genre = await Genre.findOne({ where: { id: book.GenreId } });
+  console.log(book);
+  res.send({ book: book, genre: genre });
 };
 
 const addBook = async (req, res) => {
